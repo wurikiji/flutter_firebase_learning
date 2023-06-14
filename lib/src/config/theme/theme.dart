@@ -11,8 +11,8 @@ class LightTheme implements ThemeImpl {
         // Bottom Navigation Bar 색
         canvasColor: const Color.fromRGBO(236, 237, 240, 1),
         iconTheme: const IconThemeData(color: Colors.black),
-        primaryColor: Color.fromRGBO(52, 120, 246, 1),
-        primaryColorLight: Color.fromRGBO(89, 171, 225, 1),
+        primaryColor: const Color.fromRGBO(52, 120, 246, 1),
+        primaryColorLight: const Color.fromRGBO(89, 171, 225, 1),
 
         // fontFamily: 'Korail',
         textTheme: const TextTheme(
