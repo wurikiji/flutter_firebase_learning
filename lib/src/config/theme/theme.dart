@@ -19,7 +19,7 @@ class LightTheme implements ThemeImpl {
           bodyLarge: TextStyle(
               color: Colors.black, fontSize: 24, fontWeight: FontWeight.w900),
           //: 보통 글귀
-          bodyMedium: TextStyle(color: Colors.black, fontSize: 14),
+          bodyMedium: TextStyle(color: Colors.black, fontSize: 16),
           bodySmall: TextStyle(color: Colors.black, fontSize: 10),
         ),
         cardColor: Colors.white);
@@ -40,7 +40,7 @@ class DarkTheme implements ThemeImpl {
       // fontFamily: 'Korail',
       textTheme: const TextTheme(
         bodyLarge: TextStyle(color: Colors.white, fontSize: 24),
-        bodyMedium: TextStyle(color: Colors.white, fontSize: 14),
+        bodyMedium: TextStyle(color: Colors.white, fontSize: 16),
         bodySmall: TextStyle(color: Colors.white, fontSize: 10),
       ),
 

@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,16 +49,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCaeTgpOh-IIvhmJ4sij_43JDo0dvyd2l4',
-    appId: '1:364393401324:web:27daa05d14195916498ec9',
-    messagingSenderId: '364393401324',
-    projectId: 'flutter-firebase-learnin-febfb',
-    authDomain: 'flutter-firebase-learnin-febfb.firebaseapp.com',
-    storageBucket: 'flutter-firebase-learnin-febfb.appspot.com',
-    measurementId: 'G-70T5JLS5SD',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBjfUeyfhpHKPG7gb1JIWROdJ6jY9J8Mn0',
     appId: '1:364393401324:android:d307c11804fc0ff1498ec9',
@@ -69,15 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'flutter-firebase-learnin-febfb.appspot.com',
     iosClientId: '364393401324-5gidc3qp5v3u1j05kmn7dsksoi6vgnb6.apps.googleusercontent.com',
     iosBundleId: 'com.example.firebaseStudy',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDn8e4qRLpgv0u6cxhwsTHcV8IOAOmMzc4',
-    appId: '1:364393401324:ios:f09eec3a2e5795e7498ec9',
-    messagingSenderId: '364393401324',
-    projectId: 'flutter-firebase-learnin-febfb',
-    storageBucket: 'flutter-firebase-learnin-febfb.appspot.com',
-    iosClientId: '364393401324-fstunmdejo3dgvmsrh1cmva4npctcram.apps.googleusercontent.com',
-    iosBundleId: 'com.example.firebaseStudy.RunnerTests',
   );
 }
