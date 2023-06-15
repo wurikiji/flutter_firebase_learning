@@ -6,12 +6,14 @@ class CustomTextFormField extends StatelessWidget {
   final FormFieldSetter<String>? onSaved;
   final GestureTapCallback onTap;
   final String title;
+  final ValueChanged<String>? onChanged;
   final bool isPassword;
 
   const CustomTextFormField(
       {required this.onTap,
       this.title = "",
       this.isPassword = false,
+      this.onChanged,
       this.validator,
       this.onSaved,
       this.hintText,
@@ -26,16 +28,21 @@ class CustomTextFormField extends StatelessWidget {
       textAlign: TextAlign.right,
       validator: validator,
       onSaved: onSaved,
+      onChanged: onChanged,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       autofocus: true,
       onTap: onTap,
       decoration: InputDecoration(
-          label: Text(title,style: Theme.of(context).textTheme.bodyMedium,),
-          labelStyle: Theme.of(context).textTheme.bodySmall,
+        label: Text(
+          title,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        labelStyle: Theme.of(context).textTheme.bodySmall,
         enabledBorder: _enabledBorder(context),
-          focusedBorder: _focusedBorder(context),
-          hintStyle: Theme.of(context).textTheme.bodyMedium,
-          hintText: hintText,),
+        focusedBorder: _focusedBorder(context),
+        hintStyle: Theme.of(context).textTheme.bodyMedium,
+        hintText: hintText,
+      ),
     );
   }
 

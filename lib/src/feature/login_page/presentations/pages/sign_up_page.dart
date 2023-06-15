@@ -1,48 +1,49 @@
 import 'package:firebase_study/src/core/layout/default_layout.dart';
-import 'package:firebase_study/src/core/resource/padding.dart';
-import 'package:firebase_study/src/core/resource/spacer.dart';
-import 'package:firebase_study/src/core/widget/custom_text_form_field.dart';
+import 'package:firebase_study/src/feature/login_page/presentations/widget/pass_text_form_field.dart';
+import 'package:firebase_study/src/feature/login_page/presentations/widget/sign_up_button.dart';
+import 'package:firebase_study/src/core/widget/sign_up_page/email_text_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUpPage extends StatelessWidget {
+final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+class SignUpPage extends ConsumerWidget {
   static String get routeName => 'sign-up';
-  const SignUpPage({super.key});
 
+  const SignUpPage({super.key});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return DefaultLayout(
-        title: "Sign Up Page",
+      title: "Sign Up Page",
+      child: Form(
+        key: _formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            HorizontalPadding(
-              child: CustomTextFormField(title: "Email", onTap: () {}),
+            EmailTextForm(
+              validator: _validator("Please enter email"),
             ),
-            const CustomSpacer(),
-            HorizontalPadding(
-              child: CustomTextFormField(title: "Password", onTap: () {}),
+            PassTextFormField(
+              validator: _validator("Please enter password"),
             ),
-            const CustomSpacer(),
-            HorizontalPadding(
-              child:
-                  CustomTextFormField(title: "Verify Password", onTap: () {}),
+            PassTextFormField(
+              validator: _validator("Please enter password"),
+              isVerify: true,
             ),
-            const CustomSpacer(),
-            HorizontalPadding(
-              child: _signUpButton(context),
-            ),
+            SignUpButton(formKey: _formKey),
           ],
-        ));
-  }
-
-  ElevatedButton _signUpButton(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
-      child: Text(
-        "Sign Up",
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
+        ),
       ),
     );
+  }
+
+  FormFieldValidator<String?>? _validator(String errMsg) {
+    return (value) {
+      if (value == null || value.isEmpty) {
+        return errMsg;
+      }
+      return null;
+    };
   }
 }

@@ -21,7 +21,7 @@ final authRepositoryProvider = Provider<AuthRepository>.internal(
 );
 
 typedef AuthRepositoryRef = ProviderRef<AuthRepository>;
-String _$authStateChangeHash() => r'34dc1a904bdc412e424287dc974b89b97b64a654';
+String _$authStateChangeHash() => r'd8eee5e8bef2de4af305ee136ea81eaf33802c06';
 
 /// See also [authStateChange].
 @ProviderFor(authStateChange)
@@ -36,7 +36,7 @@ final authStateChangeProvider = StreamProvider<User?>.internal(
 );
 
 typedef AuthStateChangeRef = StreamProviderRef<User?>;
-String _$firebaseAuthHash() => r'46c40b7c5cf8ab936c0daa96a6af106bd2ae5d51';
+String _$firebaseAuthHash() => r'7edafdb125d193ad1babec0341fe6da823755bb1';
 
 /// See also [firebaseAuth].
 @ProviderFor(firebaseAuth)

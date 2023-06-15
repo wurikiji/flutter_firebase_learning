@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatelessWidget {
+  static String get routeName => 'login';
   const LoginPage({super.key});
 
   @override
@@ -16,13 +17,13 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             HorizontalPadding(
-              child: _emailLoginPageButton(context),
+              child: this.emailLoginPageButton(context),
             )
           ],
         ));
   }
 
-  ElevatedButton _emailLoginPageButton(BuildContext context) {
+  ElevatedButton emailLoginPageButton(BuildContext context) {
     return ElevatedButton(
         onPressed: () {
           context.goNamed(EmailLoginPage.routeName);

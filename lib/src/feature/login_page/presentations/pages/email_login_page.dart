@@ -1,6 +1,5 @@
 import 'package:firebase_study/src/core/layout/default_layout.dart';
 import 'package:firebase_study/src/core/resource/padding.dart';
-import 'package:firebase_study/src/core/resource/spacer.dart';
 import 'package:firebase_study/src/core/widget/custom_text_form_field.dart';
 import 'package:firebase_study/src/feature/login_page/presentations/pages/forget_pass_page.dart';
 import 'package:firebase_study/src/feature/login_page/presentations/pages/sign_up_page.dart';
@@ -20,19 +19,16 @@ class EmailLoginPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          HorizontalPadding(
-            child: _emailFormField(),
+          FullPadding(
+            child: emailFormField(),
           ),
-          const CustomSpacer(),
-          HorizontalPadding(
-            child: _passwordFormField(),
+          FullPadding(
+            child: passwordFormField(),
           ),
-          const CustomSpacer(),
-          HorizontalPadding(
+          FullPadding(
             child: _loginButton(),
           ),
-          const CustomSpacer(),
-          HorizontalPadding(
+          FullPadding(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -64,12 +60,12 @@ class EmailLoginPage extends StatelessWidget {
     );
   }
 
-  CustomTextFormField _emailFormField() => CustomTextFormField(
+  CustomTextFormField emailFormField() => CustomTextFormField(
         onTap: () {},
         title: "Email",
       );
 
-  CustomTextFormField _passwordFormField() => CustomTextFormField(
+  CustomTextFormField passwordFormField() => CustomTextFormField(
         title: "Password",
         onTap: () {},
         isPassword: true,
