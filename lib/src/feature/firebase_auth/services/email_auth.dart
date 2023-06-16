@@ -1,12 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class EmailAuthState {
-  final bool isErr;
-  final String? errorMessage;
-
-  EmailAuthState({required this.isErr, this.errorMessage});
-}
 
 class EmailAuth {
   final FirebaseAuth _auth;
@@ -19,7 +13,7 @@ class EmailAuth {
         email: email,
         password: password,
       );
-      return EmailAuthState(isErr: false);
+      return SignedUpAuthState();
     } on FirebaseAuthException catch (e) {
       String message;
       if (e.code == 'weak-password') {
@@ -29,10 +23,9 @@ class EmailAuth {
       } else {
         message = e.message ?? "An unknown error occurred.";
       }
-      return EmailAuthState(isErr: true, errorMessage: message);
+      return FailedAuthState(message);
     } catch (e) {
-      return EmailAuthState(
-          isErr: true, errorMessage: "An unknown error occurred.");
+      return FailedAuthState("An unknown error occurred.");
     }
   }
 
@@ -40,4 +33,14 @@ class EmailAuth {
     debugPrint(_auth.currentUser.toString());
     await _auth.currentUser?.sendEmailVerification();
   }
+}
+
+abstract class EmailAuthState {}
+
+class SignedUpAuthState extends EmailAuthState {}
+
+class FailedAuthState extends EmailAuthState {
+  final String errMsg;
+
+  FailedAuthState(this.errMsg);
 }

@@ -26,7 +26,7 @@ class SignUpButton extends ConsumerWidget {
 
             emailAuthState.then(
               (EmailAuthState state) {
-                if (state.isErr && state.errorMessage != null) {
+                if (state is FailedAuthState) {
                   _errAlert(state: state, context: context);
                 } else {
                   _signUpSuccess(context, ref);
@@ -68,20 +68,19 @@ class SignUpButton extends ConsumerWidget {
   }
 
   void _sendVerifyEmail(WidgetRef ref) {
-                          try {
-                        EmailAuth(ref.watch(firebaseAuthProvider))
-                            .sendEmailVerification();
-                      } catch (e) {
-                        debugPrint("[!] sendSingInLink Error : ${e.toString}");
-                      }
+    try {
+      EmailAuth(ref.watch(firebaseAuthProvider)).sendEmailVerification();
+    } catch (e) {
+      debugPrint("[!] sendSingInLink Error : ${e.toString}");
+    }
   }
 
   void _errAlert(
-      {required BuildContext context, required EmailAuthState state}) {
+      {required BuildContext context, required FailedAuthState state}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          state.errorMessage!,
+          state.errMsg,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
       ),
