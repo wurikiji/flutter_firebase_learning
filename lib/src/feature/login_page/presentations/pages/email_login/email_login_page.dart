@@ -4,6 +4,7 @@ import 'package:firebase_study/src/core/resource/validator.dart';
 import 'package:firebase_study/src/core/widget/custom_text_form_field.dart';
 import 'package:firebase_study/src/core/widget/email_text_form.dart';
 import 'package:firebase_study/src/core/widget/pass_text_form_field.dart';
+import 'package:firebase_study/src/feature/firebase_auth/services/firebase_auth.dart';
 import 'package:firebase_study/src/feature/login_page/presentations/pages/email_login/forget_pass_page.dart';
 import 'package:firebase_study/src/feature/login_page/presentations/pages/email_login/sign_up_page.dart';
 import 'package:firebase_study/src/feature/login_page/presentations/widget/email_login/email_login_button.dart';

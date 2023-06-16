@@ -1,4 +1,3 @@
-import 'package:firebase_study/src/core/page/err_page.dart';
 import 'package:firebase_study/src/core/resource/padding.dart';
 import 'package:firebase_study/src/feature/firebase_auth/data/model/email_model.dart';
 import 'package:firebase_study/src/feature/firebase_auth/services/email_auth.dart';
@@ -21,18 +20,16 @@ class SignUpButton extends ConsumerWidget {
             formKey.currentState!.save();
             final (email, passwd) = emailModel.get;
 
-            Future<EmailAuthState> emailAuthState = EmailAuth(ref.watch(firebaseAuthProvider)).signUp(email, passwd);
+            Future<EmailAuthState> emailAuthState =
+                EmailAuth(ref.watch(firebaseAuthProvider))
+                    .signUp(email, passwd);
+
             emailAuthState.then(
-              (EmailAuthState value) {
-                if (value.isErr && value.errorMessage != null) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        value.errorMessage!,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ),
-                  );
+              (EmailAuthState state) {
+                if (state.isErr && state.errorMessage != null) {
+                  _errAlert(state: state, context: context);
+                } else {
+                  _signUpSuccess(context, ref);
                 }
               },
             );
@@ -41,6 +38,51 @@ class SignUpButton extends ConsumerWidget {
         child: Text(
           "Sign Up",
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _signUpSuccess(BuildContext context, WidgetRef ref) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        _sendVerifyEmail(ref);
+
+        return AlertDialog(
+          backgroundColor: Theme.of(context).cardColor,
+          content: Text(
+            "I sent an authentication mail to the email address you entered. Please check your email",
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("OK"))
+          ],
+        );
+      },
+    );
+  }
+
+  void _sendVerifyEmail(WidgetRef ref) {
+                          try {
+                        EmailAuth(ref.watch(firebaseAuthProvider))
+                            .sendEmailVerification();
+                      } catch (e) {
+                        debugPrint("[!] sendSingInLink Error : ${e.toString}");
+                      }
+  }
+
+  void _errAlert(
+      {required BuildContext context, required EmailAuthState state}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          state.errorMessage!,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
       ),
     );

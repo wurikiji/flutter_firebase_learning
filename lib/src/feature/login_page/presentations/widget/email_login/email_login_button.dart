@@ -1,3 +1,4 @@
+import 'package:firebase_study/src/core/resource/padding.dart';
 import 'package:flutter/material.dart';
 
 class EmailLoginButton extends StatelessWidget {
@@ -5,10 +6,12 @@ class EmailLoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
-      child: const Text(
-        "Login",
+    return FullPadding(
+      child: ElevatedButton(
+        onPressed: () {},
+        child: const Text(
+          "Login",
+        ),
       ),
     );
   }

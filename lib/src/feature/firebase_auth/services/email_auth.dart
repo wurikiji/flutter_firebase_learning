@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class EmailAuthState {
   final bool isErr;
@@ -33,5 +34,10 @@ class EmailAuth {
       return EmailAuthState(
           isErr: true, errorMessage: "An unknown error occurred.");
     }
+  }
+
+  Future<void> sendEmailVerification() async {
+    debugPrint(_auth.currentUser.toString());
+    await _auth.currentUser?.sendEmailVerification();
   }
 }
