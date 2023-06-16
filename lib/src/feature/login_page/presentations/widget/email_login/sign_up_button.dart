@@ -1,3 +1,4 @@
+import 'package:firebase_study/src/core/page/err_page.dart';
 import 'package:firebase_study/src/core/resource/padding.dart';
 import 'package:firebase_study/src/feature/firebase_auth/data/model/email_model.dart';
 import 'package:firebase_study/src/feature/firebase_auth/services/email_auth.dart';
@@ -19,8 +20,22 @@ class SignUpButton extends ConsumerWidget {
           if (formKey.currentState!.validate()) {
             formKey.currentState!.save();
             final (email, passwd) = emailModel.get;
-            debugPrint('[*] Save Success : $email, $passwd');
-            EmailAuth(ref.watch(firebaseAuthProvider)).signUp(email, passwd);
+
+            Future<EmailAuthState> emailAuthState = EmailAuth(ref.watch(firebaseAuthProvider)).signUp(email, passwd);
+            emailAuthState.then(
+              (EmailAuthState value) {
+                if (value.isErr && value.errorMessage != null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        value.errorMessage!,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ),
+                  );
+                }
+              },
+            );
           }
         },
         child: Text(

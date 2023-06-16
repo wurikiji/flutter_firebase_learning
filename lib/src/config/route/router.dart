@@ -1,7 +1,8 @@
-import 'package:firebase_study/src/feature/login_page/presentations/pages/email_login_page.dart';
-import 'package:firebase_study/src/feature/login_page/presentations/pages/forget_pass_page.dart';
+import 'package:firebase_study/src/core/page/err_page.dart';
+import 'package:firebase_study/src/feature/login_page/presentations/pages/email_login/email_login_page.dart';
+import 'package:firebase_study/src/feature/login_page/presentations/pages/email_login/forget_pass_page.dart';
 import 'package:firebase_study/src/feature/login_page/presentations/pages/login_page.dart';
-import 'package:firebase_study/src/feature/login_page/presentations/pages/sign_up_page.dart';
+import 'package:firebase_study/src/feature/login_page/presentations/pages/email_login/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -23,21 +24,27 @@ GoRouter goRouter(GoRouterRef ref) {
             builder: (context, state) => const LoginPage(),
             routes: [
               GoRoute(
-                  path: EmailLoginPage.routeName,
-                  name: EmailLoginPage.routeName,
-                  builder: (context, state) => const EmailLoginPage(),
-                  routes: [
-                    GoRoute(
-                      path: SignUpPage.routeName,
-                      name: SignUpPage.routeName,
-                      builder: (context, state) => const SignUpPage(),
-                    ),
-                    GoRoute(
-                      path: ForgetPassPage.routeName,
-                      name: ForgetPassPage.routeName,
-                      builder: (context, state) => const ForgetPassPage(),
-                    ),
-                  ]),
+                path: EmailLoginPage.routeName,
+                name: EmailLoginPage.routeName,
+                builder: (context, state) => const EmailLoginPage(),
+                routes: [
+                  GoRoute(
+                    path: SignUpPage.routeName,
+                    name: SignUpPage.routeName,
+                    builder: (context, state) => const SignUpPage(),
+                  ),
+                  GoRoute(
+                    path: ForgetPassPage.routeName,
+                    name: ForgetPassPage.routeName,
+                    builder: (context, state) => const ForgetPassPage(),
+                  ),
+                ],
+              ),
+              GoRoute(
+                path: "${ErrPage.routeName}/:errMsg",
+                name: ErrPage.routeName,
+                builder: (context, state) => const ErrPage(),
+              )
             ],
           ),
         ],

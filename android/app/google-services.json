@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "364393401324-mcius383baqa73esb7kckfc4pq76uo0k.apps.googleusercontent.com",
+          "client_id": "364393401324-no9dqifptre0nilijbjpd8b2444gdolh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +29,13 @@
             {
               "client_id": "364393401324-mcius383baqa73esb7kckfc4pq76uo0k.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "364393401324-5gidc3qp5v3u1j05kmn7dsksoi6vgnb6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseStudy"
+              }
             }
           ]
         }

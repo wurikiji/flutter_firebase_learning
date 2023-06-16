@@ -1,6 +1,6 @@
 import 'package:firebase_study/src/core/layout/default_layout.dart';
 import 'package:firebase_study/src/core/resource/padding.dart';
-import 'package:firebase_study/src/feature/login_page/presentations/pages/email_login_page.dart';
+import 'package:firebase_study/src/feature/login_page/presentations/pages/email_login/email_login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             HorizontalPadding(
-              child: this.emailLoginPageButton(context),
+              child: emailLoginPageButton(context),
             )
           ],
         ));

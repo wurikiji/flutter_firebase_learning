@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class PassTextFormField extends ConsumerWidget {
   final FormFieldValidator<String?>? validator;
   final bool isVerify;
-  const PassTextFormField ({required this.validator,
+  const PassTextFormField ({this.validator,
     this.isVerify = false,
   super.key});
 

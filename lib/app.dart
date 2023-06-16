@@ -10,8 +10,6 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(goRouterProvider);
-    
-
     ref.watch(authRepositoryProvider).authStateChanges().listen((event) {
       debugPrint("[!]Auth Change : $event");
     });
