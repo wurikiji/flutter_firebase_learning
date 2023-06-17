@@ -1,0 +1,49 @@
+app -> my code.auth -> my code.Iauth
+
+my code: {
+  auth: Email Auth {
+    shape: class
+    login()
+    logout()
+    signup()
+  }
+
+  Iauth: Email Auth Interface {
+    shape: class
+    login()
+    logout()
+    signup()
+    signout()
+    verityEmail()
+  }
+
+  firebase auth -> Iauth: {
+    target-arrowhead: {
+      shape: diamond
+    }
+  }
+  firebase auth: {
+    shape: class
+    +login()
+    +logout()
+  }
+  firebase auth -> _.3rd.firebase
+
+  google auth -> Iauth: {
+    target-arrowhead: {
+      shape: diamond
+    }
+  }
+  google auth: {
+    shape: class
+    +login()
+    +logout()
+  }
+  google auth -> _.3rd.google
+}
+
+3rd: 3rd party {
+  firebase: firebase auth
+  google: google auth
+  aws: aws auth
+}
